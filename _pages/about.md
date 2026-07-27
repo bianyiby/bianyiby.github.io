@@ -60,7 +60,7 @@ The full list is available on <a href='https://scholar.google.com/citations?hl=z
 - *2019.05 - 2020.02*, [Lorem](https://github.com/), China. -->
 
 # 💻 Fundings and Projects
-- *2026.01*:  National Science and Technology Major Project（国家科技重大专项子课题）
+- *2026.01*:  National Science and Technology Major Project (Subproject Leader, PI)（国家科技重大专项子课题负责人）
 - *2026.01*:  Young Scientists Fund of the National Natural Science Foundation of China (NSFC青年基金C类, PI)
-- *2026.07*:  China Postdoctoral Science Foundation — Special Funding Program（中国博士后科学基金特别资助项目，PI）
-- *2025.07*:  General Program of the Chinese Postdoctoral Science Foundation (中国博士后科学基金面上资助, PI)
+- *2026.07*:  China Postdoctoral Science Foundation — Special Funding（中国博士后科学基金特别资助项目，PI）
+- *2025.07*:  China Postdoctoral Science Foundation — General Funding（中国博士后科学基金面上资助, PI）
