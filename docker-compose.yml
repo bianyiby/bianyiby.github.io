@@ -1,0 +1,9 @@
+services:
+  website:
+    platform: linux/amd64
+    build: .
+    ports:
+      - "4002:4000"
+    volumes:
+      - .:/srv/jekyll
+    command: sh -c "mkdir -p assets/img/papers && cp -rL _bibliography/figs/* assets/img/papers/ && bundle exec jekyll serve --host 0.0.0.0 --port 4000 --no-watch"

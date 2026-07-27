@@ -1,0 +1,173 @@
+---
+---
+
+/*
+ *    Minimal Mistakes Jekyll Theme
+ *
+ *  - Michael Rose
+ *  - mademistakes.com
+ *  - https://twitter.com/mmistakes
+ *
+*/
+
+@import "vendor/breakpoint/breakpoint"; // media query mixins
+@import "variables";
+@import "mixins";
+@import "vendor/susy/susy";
+
+@import "reset";
+@import "base";
+
+@import "utilities";
+@import "animations";
+@import "tables";
+@import "buttons";
+@import "notices";
+@import "masthead";
+@import "navigation";
+@import "footer";
+@import "syntax";
+
+@import "forms";
+
+@import "page";
+@import "archive";
+@import "sidebar";
+
+@import "vendor/font-awesome/fontawesome";
+@import "vendor/font-awesome/solid";
+@import "vendor/font-awesome/brands";
+@import "vendor/magnific-popup/magnific-popup";
+@import "print";
+
+.paper-box {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-bottom: 1px #efefef solid;
+    padding: 2em 0 2em 0;
+    
+
+    .paper-box-image{
+        justify-content: center;
+        display: flex;
+        width: 100%;
+        order: 2;
+        img {
+            max-width: 400px;
+            box-shadow: 3px 3px 6px #888;
+            object-fit: cover;
+        }
+    }
+    
+    .paper-box-text{
+        max-width: 100%;
+        order: 1;
+    }
+    
+    @include breakpoint($medium) {
+        .paper-box-image{
+            justify-content: left;
+            min-width: 200px;
+            max-width: 40%;
+            order: 1;
+        }
+        
+        .paper-box-text{
+            justify-content: left;
+            padding-left: 2em;
+            max-width: 60%;
+            order: 2;
+        }
+
+    }
+
+
+}
+
+$scroll_offset : 2em;
+h1:before, .anchor:before { 
+    content: ''; 
+    display: block; 
+    position: relative; 
+    width: 0; 
+    height: $scroll_offset; 
+    margin-top: -$scroll_offset;
+}
+
+.badge {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    position: absolute;
+    margin-top: .5em;
+    margin-left: -.5em;
+    color: white;
+    background-color: #00369f;
+    font-size: .8em;
+}
+
+.selected-publications h2.bibliography {
+    display: none;
+}
+
+.selected-publications ol.bibliography {
+    list-style: none;
+    padding-left: 0;
+}
+
+.publications-list .badge {
+    position: static;
+    display: inline-block;
+    margin-right: 0.5em;
+    margin-left: 0;
+}
+
+.ccf-badge {
+    display: inline-block;
+    padding: 0.1em 0.5em;
+    margin-left: 0.3em;
+    color: white;
+    font-size: 0.75em;
+    border-radius: 3px;
+    vertical-align: middle;
+}
+.ccf-badge.ccf-a { background-color: #e74c3c; }
+.ccf-badge.ccf-b { background-color: #f39c12; }
+.ccf-badge.ccf-c { background-color: #3498db; }
+.ccf-badge.ccf-d { background-color: #95a5a6; }
+.ccf-badge.jcr-q1 { background-color: #e74c3c; }
+.ccf-badge.jcr-q2 { background-color: #f39c12; }
+.ccf-badge.jcr-q3 { background-color: #3498db; }
+.ccf-badge.jcr-q4 { background-color: #95a5a6; }
+
+.pub-year-nav {
+    position: fixed;
+    right: 1em;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    z-index: 100;
+}
+.pub-year-nav button {
+    display: block;
+    padding: 0.25em 0.6em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    color: #00369f;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.pub-year-nav button:hover {
+    background: #00369f;
+    color: #fff;
+    border-color: #00369f;
+}
+@media (max-width: 64em) {
+    .pub-year-nav { display: none; }
+}

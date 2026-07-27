@@ -1,0 +1,60 @@
+---
+---
+{%- assign authors = entry.author | split: " and " -%}
+{%- capture author_html -%}
+  {%- for a in authors -%}
+    {%- assign parts = a | split: ", " -%}
+    {%- if parts.size == 2 -%}
+      {%- assign full_name = parts[1] | append: " " | append: parts[0] -%}
+    {%- else -%}
+      {%- assign full_name = a -%}
+    {%- endif -%}
+    {%- if full_name == "Yi Bian" -%}
+      <u><strong style="color:#01369f;background:#eef3fc;padding:0 2px;">Yi Bian</strong></u>
+      {%- if entry.corresponding and entry.corresponding_author == "Bian, Yi" -%}<sup>*</sup>{%- endif -%}
+    {%- else -%}
+      {{ full_name }}
+    {%- endif -%}
+    {%- if forloop.last == false -%}
+      {%- if forloop.index == forloop.length | minus: 1 -%}, and {% else -%}, {% endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- capture venue -%}
+{%- if entry.journal -%}<em>{{ entry.journal }}</em>{%- else -%}<em>{{ entry.booktitle }}</em>{%- endif -%}
+{%- if entry.volume %}, vol. {{ entry.volume }}{%- endif -%}
+{%- if entry.number %}, no. {{ entry.number }}{%- endif -%}
+{%- if entry.pages %}, pp. {{ entry.pages }}{%- endif -%}
+{%- if entry.year %}, {{ entry.year }}{%- endif -%}
+{%- endcapture -%}
+
+{%- assign ccf = '' -%}
+{%- case entry.abbr -%}
+  {%- when 'CCS' -%}{%- assign ccf = 'A' -%}
+  {%- when 'TC' -%}{%- assign ccf = 'A' -%}
+  {%- when 'ICPP' -%}{%- assign ccf = 'B' -%}
+  {%- when 'TCHES' -%}{%- assign ccf = 'B' -%}
+  {%- when 'ICPADS' -%}{%- assign ccf = 'C' -%}
+{%- endcase -%}
+{%- capture ccf_badge -%}
+{%- if ccf != '' -%}<span class="ccf-badge ccf-{{ ccf | downcase }}">CCF-{{ ccf }}</span>{%- endif -%}
+{%- endcapture -%}
+
+{% if entry.preview %}
+<div class="paper-box">
+  <div class="paper-box-image">
+    <div>
+      {% if entry.abbr %}<div class="badge">{{ entry.abbr }}</div>{% endif %}
+      <img src="{{ entry.preview | relative_url }}" alt="preview" width="100%">
+    </div>
+  </div>
+  <div class="paper-box-text">
+    <p>{% if entry.html %}<a href="{{ entry.html }}">{{ entry.title }}</a>{% else %}{{ entry.title }}{% endif %}</p>
+    <p>{{ author_html }}, {{ venue }} {{ ccf_badge }}</p>
+  </div>
+</div>
+{% else %}
+<p>{% if entry.abbr %}<span class="badge">{{ entry.abbr }}</span> {% endif %}{% if entry.html %}<a href="{{ entry.html }}">{{ entry.title }}</a>{% else %}{{ entry.title }}{% endif %}<br>
+{{ author_html }}, {{ venue }} {{ ccf_badge }}</p>
+{% endif %}

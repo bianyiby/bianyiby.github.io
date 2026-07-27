@@ -1,0 +1,79 @@
+/* ==========================================================================
+   MASTHEAD
+   ========================================================================== */
+
+.masthead {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  border-bottom: 1px solid $border-color;
+  -webkit-animation: intro 0.3s both;
+          animation: intro 0.3s both;
+  -webkit-animation-delay: 0.15s;
+          animation-delay: 0.15s;
+  z-index: 20;
+
+  &__inner-wrap {
+    @include container;
+    @include clearfix;
+    padding: .5em;
+    font-family: $sans-serif-narrow;
+
+    @include breakpoint($x-large) {
+      max-width: $x-large;
+    }
+
+    nav {
+      z-index: 10;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+.masthead__menu {
+
+  ul {
+    margin: 0;
+    padding: 0;
+    clear: both;
+    list-style-type: none;
+  }
+}
+
+.masthead__menu-home-item {
+  display: block !important;
+}
+
+.masthead__menu-item {
+  display: block;
+  list-style-type: none;
+  white-space: nowrap;
+
+  &--lg {
+    padding-right: 2em;
+    font-weight: 700;
+  }
+
+  &.active a {
+    display: inline-block;
+    color: #fff !important;
+    background: #00369f;
+    border-radius: 4px;
+    padding: 0.25em 0.5em !important;
+    margin: 0 0.5rem;
+  }
+}
+
+.masthead__menu-item--lg.active a {
+  display: inline-block;
+  color: #fff !important;
+  background: #00369f;
+  border-radius: 4px;
+  padding: 0.25em 0.5em !important;
+  margin: 0 0.5rem;
+}
+
+

@@ -1,0 +1,81 @@
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><div class="navicon"></div></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg masthead__menu-home-item"><a href="{{ '/' | relative_url }}">Homepage</a></li>
+          {% for link in site.data.navigation.main %}
+            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var items = document.querySelectorAll('.masthead__menu-item:not(.masthead__menu-item--lg) a');
+    var homeLink = document.querySelector('.masthead__menu-home-item a');
+
+    function getActivePath() {
+      var path = window.location.pathname;
+      if (path.length > 1 && path.charAt(path.length - 1) === '/') path = path.slice(0, -1);
+      return path;
+    }
+
+    function highlightActive() {
+      items.forEach(function(i) { i.parentElement.classList.remove('active'); });
+      if (homeLink) homeLink.parentElement.classList.remove('active');
+
+      var path = getActivePath();
+      var hash = window.location.hash;
+
+      if (path === '' || path === '/') {
+        if (hash) {
+          var matched = false;
+          items.forEach(function(item) {
+            var href = item.getAttribute('href') || '';
+            if (href.indexOf(hash) !== -1) {
+              item.parentElement.classList.add('active');
+              matched = true;
+            }
+          });
+          if (!matched && homeLink) homeLink.parentElement.classList.add('active');
+        } else {
+          if (homeLink) homeLink.parentElement.classList.add('active');
+        }
+        return;
+      }
+
+      items.forEach(function(item) {
+        var href = item.getAttribute('href');
+        if (!href) return;
+        var linkPath = href.split('#')[0];
+        if (linkPath.length > 1 && linkPath.charAt(linkPath.length - 1) === '/') linkPath = linkPath.slice(0, -1);
+        if (linkPath === path) {
+          item.parentElement.classList.add('active');
+        }
+      });
+    }
+
+    highlightActive();
+
+    items.forEach(function(item) {
+      item.addEventListener('click', function() {
+        items.forEach(function(i) { i.parentElement.classList.remove('active'); });
+        if (homeLink) homeLink.parentElement.classList.remove('active');
+        item.parentElement.classList.add('active');
+      });
+    });
+
+    if (homeLink) {
+      homeLink.addEventListener('click', function() {
+        items.forEach(function(i) { i.parentElement.classList.remove('active'); });
+        homeLink.parentElement.classList.add('active');
+      });
+    }
+  })();
+</script>
