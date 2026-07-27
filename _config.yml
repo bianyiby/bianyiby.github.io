@@ -6,7 +6,7 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-title                    : "Yi Bian（边毅）"
+title                    : "Yi Bian (Bian Yi)"
 description              : "Focusing on applied cryptography and privacy-preserving computation."
 repository               : "bianyiby/bianyiby.github.io"
 url                      : "https://bianyiby.github.io"
