@@ -6,11 +6,11 @@ main:
   - title: "Highlights"
     url: "/#-highlights"
 
-  - title: "Publications"
-    url: "/publications/"
-
   - title: "Educations"
     url: "/#-educations"
 
   - title: "Fundings and Projects"
     url: "/#-fundings-and-projects"
+
+  - title: "Publications"
+    url: "/publications/"
