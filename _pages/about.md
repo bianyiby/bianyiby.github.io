@@ -55,11 +55,11 @@ The full list is available on <a href='https://scholar.google.com/citations?hl=z
 
 # 🎓 Educations
 <div style="display:flex;align-items:center;margin-bottom:10px;">
-  <img src="/images/ucas-logo.png" width="45" style="margin-right:15px;flex-shrink:0;">
+  <img src="/images/ucas-logo.png" width="60" style="margin-right:15px;flex-shrink:0;background:#fff;border-radius:8px;padding:4px;box-shadow:0 4px 12px rgba(0,0,0,0.25);">
   <div><em>2018.09 - 2025.01</em>, University of Chinese Academy of Sciences<br><span style="color:#7a828a;">Ph.D. in Information Security</span></div>
 </div>
 <div style="display:flex;align-items:center;margin-bottom:10px;">
-  <img src="/images/sdu-logo.svg" width="45" style="margin-right:15px;flex-shrink:0;">
+  <img src="/images/sdu-logo.svg" width="60" style="margin-right:15px;flex-shrink:0;background:#fff;border-radius:8px;padding:4px;box-shadow:0 4px 12px rgba(0,0,0,0.25);">
   <div><em>2014.09 - 2018.06</em>, Shandong University<br><span style="color:#7a828a;">B.Eng. in Communication Engineering</span></div>
 </div>
 

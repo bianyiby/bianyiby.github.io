@@ -207,6 +207,7 @@ html[data-theme="dark"] body {
 [data-theme="dark"] .paper-box {
     background-color: var(--card-bg) !important;
     border-color: var(--border-color) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4) !important;
 }
 
 [data-theme="dark"] .ccf-badge { border-color: var(--border-color) !important; }
@@ -300,9 +301,12 @@ html[data-theme="dark"] body {
     border-color: var(--border-color) transparent !important;
 }
 
-[data-theme="dark"] .paper-box-image img,
 [data-theme="dark"] .author__avatar img {
     background: #fff !important;
+    box-shadow: 4px 4px 12px rgba(255,255,255,0.35) !important;
+}
+[data-theme="dark"] .student-item {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4) !important;
 }
 [data-theme="dark"] .author__avatar img {
     border-color: var(--border-color) !important;
@@ -319,10 +323,11 @@ html[data-theme="dark"] body {
     padding: 1.5em;
     margin-bottom: 1.5em;
     background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     transition: box-shadow 0.2s;
 
     &:hover {
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
     }
     
 
@@ -333,7 +338,7 @@ html[data-theme="dark"] body {
         order: 2;
         img {
             max-width: 400px;
-            box-shadow: 3px 3px 6px #888;
+            background: #fff;
             object-fit: cover;
         }
     }
@@ -594,8 +599,12 @@ h1:before, .anchor:before {
     border: 1px solid #eee;
     border-radius: 8px;
     background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     transition: box-shadow 0.2s;
     box-sizing: border-box;
+}
+.student-item:hover {
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
 }
 .student-item:hover {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
