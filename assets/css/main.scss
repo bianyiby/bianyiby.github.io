@@ -171,3 +171,76 @@ h1:before, .anchor:before {
 @media (max-width: 64em) {
     .pub-year-nav { display: none; }
 }
+
+/* Publication buttons (Abs/Bib) */
+.pub-btn {
+    display: inline-block;
+    padding: 0.1em 0.5em;
+    margin-left: 0.3em;
+    font-size: 0.75em;
+    border-radius: 3px;
+    cursor: pointer;
+    vertical-align: middle;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+.pub-abs-btn, .pub-bib-btn {
+    background: #fff;
+    color: #0072c5;
+    border: 1px solid #0072c5;
+}
+.pub-abs-btn:hover, .pub-bib-btn:hover {
+    background: #0072c5;
+    color: #fff;
+}
+.pub-btn.active {
+    background: #0072c5;
+    color: #fff;
+}
+.pub-buttons {
+    margin-top: 0.3em;
+}
+.pub-content {
+    margin-top: 0.5em;
+    padding: 1.8em 0.8em 0.5em 0.8em;
+    font-size: 0.85em;
+    line-height: 1.5;
+    position: relative;
+}
+.pub-content.pub-abstract {
+    background: #f8f9fa;
+    border-left: 3px solid #0072c5;
+    border-radius: 0 3px 3px 0;
+    text-align: justify;
+}
+.pub-content.pub-bibtex pre {
+    background: #f5f5f5;
+    padding: 0.5em 0.8em;
+    border-radius: 3px;
+    overflow-x: auto;
+    font-size: 0.85em;
+    margin: 0;
+}
+.pub-copy-btn {
+    position: absolute;
+    top: 0.3em;
+    right: 0.3em;
+    padding: 0.15em 0.5em;
+    font-size: 0.8em;
+    background: #fff;
+    color: #0072c5;
+    border: 1px solid #0072c5;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.pub-copy-btn:hover {
+    background: #0072c5;
+    color: #fff;
+}
+.pub-copy-btn.copied {
+    background: #28a745;
+    color: #fff;
+    border-color: #28a745;
+}
+.hidden { display: none !important; }

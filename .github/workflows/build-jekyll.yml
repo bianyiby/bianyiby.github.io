@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -20,6 +20,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fetch abstracts from Semantic Scholar
+        run: python3 scripts/fetch_abstracts.py
+
+      - name: Commit updated abstracts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _bibliography/*.bib
+          git diff --staged --quiet || git commit -m "Auto-update abstracts [skip ci]"
+          git push
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1

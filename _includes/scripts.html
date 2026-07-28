@@ -2,3 +2,84 @@
 
 {% include analytics.html %}
 {% include fetch_google_scholar_stats.html %}
+
+<script>
+  (function() {
+    function initPubButtons() {
+      document.querySelectorAll('.pub-btn').forEach(function(btn) {
+        if (btn.dataset.initialized) return;
+        btn.dataset.initialized = 'true';
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var container = btn.closest('.pub-buttons');
+          if (!container) return;
+          var content = container.querySelector('.pub-content');
+          if (!content) return;
+
+          if (btn.classList.contains('active')) {
+            btn.classList.remove('active');
+            content.className = 'pub-content hidden';
+            content.innerHTML = '';
+            return;
+          }
+
+          var absBtn = container.querySelector('.pub-abs-btn');
+          var bibBtn = container.querySelector('.pub-bib-btn');
+          var absData = container.querySelector('.pub-abstract-data');
+          var bibData = container.querySelector('.pub-bibtex-data');
+
+          if (absBtn) absBtn.classList.remove('active');
+          if (bibBtn) bibBtn.classList.remove('active');
+
+          var text = '';
+          var isAbstract = btn.classList.contains('pub-abs-btn');
+
+          if (isAbstract && absData) {
+            text = absData.textContent.trim();
+            content.innerHTML = '<div class="pub-abstract-body">' + text + '</div><button class="pub-copy-btn">Copy</button>';
+            content.className = 'pub-content pub-abstract';
+            btn.classList.add('active');
+          } else if (!isAbstract && bibData) {
+            text = bibData.querySelector('pre') ? bibData.querySelector('pre').textContent : bibData.textContent;
+            content.innerHTML = '<pre>' + text + '</pre><button class="pub-copy-btn">Copy</button>';
+            content.className = 'pub-content pub-bibtex';
+            btn.classList.add('active');
+          } else {
+            content.className = 'pub-content hidden';
+            return;
+          }
+
+          var copyBtn = content.querySelector('.pub-copy-btn');
+          if (copyBtn) {
+            copyBtn.addEventListener('click', function(ev) {
+              ev.preventDefault();
+              ev.stopPropagation();
+              var clone = content.cloneNode(true);
+              var cb = clone.querySelector('.pub-copy-btn');
+              if (cb) cb.remove();
+              var copyText = clone.textContent.trim();
+              if (navigator.clipboard) {
+                navigator.clipboard.writeText(copyText).then(function() {
+                  copyBtn.textContent = 'Copied!';
+                  copyBtn.classList.add('copied');
+                  setTimeout(function() { copyBtn.textContent = 'Copy'; copyBtn.classList.remove('copied'); }, 2000);
+                });
+              }
+            });
+          }
+        });
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPubButtons);
+    } else {
+      initPubButtons();
+    }
+    var observer = new MutationObserver(function() { initPubButtons(); });
+    document.addEventListener('DOMContentLoaded', function() {
+      observer.observe(document.body, { childList: true, subtree: true });
+    });
+    setTimeout(initPubButtons, 1000);
+    setTimeout(initPubButtons, 3000);
+  })();
+</script>

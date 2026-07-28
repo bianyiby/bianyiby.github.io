@@ -62,7 +62,7 @@ author_profile: true
         html = html.replace(/doi:\s*((10\.[0-9]{4,}[^\s,)]+))/g, function(match, doi) {
           doi = doi.replace(/[.;]+$/, '');
           var badges = classify(abbr);
-          return 'doi: <a href="https://doi.org/' + doi + '">' + doi + '</a>' + badges;
+          return 'doi: <a href="https://doi.org/' + doi + '" target="_blank" rel="noopener noreferrer">' + doi + '</a>' + badges;
         });
         span.innerHTML = html;
 

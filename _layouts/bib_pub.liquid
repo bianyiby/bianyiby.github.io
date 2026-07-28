@@ -1,3 +1,14 @@
 ---
 ---
 <p data-category="{{ entry.category | default: 'Other' }}">{% if entry.abbr %}<span class="badge">{{ entry.abbr }}</span> {% endif %}{{ reference }}</p>
+{% if entry.abstract or entry.bibtex_show %}
+<div class="pub-buttons">
+  <div class="pub-btn-row">
+    {% if entry.abstract %}<a class="pub-btn pub-abs-btn" role="button">Abs</a>{% endif %}
+    {% if entry.bibtex_show %}<a class="pub-btn pub-bib-btn" role="button">Bib</a>{% endif %}
+  </div>
+  <div class="pub-content hidden"></div>
+  {% if entry.abstract %}<div class="pub-abstract-data hidden">{{ entry.abstract }}</div>{% endif %}
+  {% if entry.bibtex_show %}<div class="pub-bibtex-data hidden"><pre>{{ entry.bibtex }}</pre></div>{% endif %}
+</div>
+{% endif %}
