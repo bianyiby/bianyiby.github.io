@@ -32,6 +32,9 @@
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="{{ site.title }}">
 <meta property="og:title" content="{{ site.title }}">
+{% if site.keywords %}
+<meta name="keywords" content="{{ site.keywords }}">
+{% endif %}
 
 {% if seo_url %}
   <link rel="canonical" href="{{ page.url | prepend: seo_url | replace: "/index.html", "/" }}">
@@ -72,4 +75,33 @@
 {% if site.baidu_site_verification %}
   <meta name="baidu-site-verification" content="{{ site.baidu_site_verification }}" />
 {% endif %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Yi Bian",
+  "alternateName": "边毅",
+  "jobTitle": "Postdoctoral Fellow",
+  "affiliation": {
+    "@type": "Organization",
+    "name": "University of Chinese Academy of Sciences"
+  },
+  "email": "mailto:bianyi@ucas.ac.cn",
+  "url": "https://bianyiby.github.io",
+  "image": "https://bianyiby.github.io/images/yibian_20240121.jpg",
+  "sameAs": [
+    "https://scholar.google.com/citations?hl=zh-CN&user=GiwxKKcAAAAJ",
+    "https://dblp.org/pid/133/2197-1.html",
+    "https://orcid.org/0009-0008-4308-3084"
+  ],
+  "knowsAbout": [
+    "Applied Cryptography",
+    "Lattice-based Cryptography",
+    "Privacy-preserving Computation",
+    "Post-quantum Cryptography",
+    "Side-channel Analysis",
+    "Hardware Security"
+  ]
+}
+</script>
 <!-- end SEO -->
