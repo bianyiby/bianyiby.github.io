@@ -4,21 +4,35 @@
       <nav id="site-nav" class="greedy-nav">
         <button><div class="navicon"></div></button>
         <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg masthead__menu-home-item"><a href="{{ '/' | relative_url }}">Homepage</a></li>
           {% for link in site.data.navigation.main %}
             <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
           {% endfor %}
         </ul>
         <ul class="hidden-links hidden"></ul>
       </nav>
+      <button id="theme-toggle" class="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+        <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
     </div>
   </div>
 </div>
 
 <script>
   (function() {
-    var items = document.querySelectorAll('.masthead__menu-item:not(.masthead__menu-item--lg) a');
-    var homeLink = document.querySelector('.masthead__menu-home-item a');
+    var items = document.querySelectorAll('.visible-links .masthead__menu-item a');
 
     function getActivePath() {
       var path = window.location.pathname;
@@ -28,24 +42,21 @@
 
     function highlightActive() {
       items.forEach(function(i) { i.parentElement.classList.remove('active'); });
-      if (homeLink) homeLink.parentElement.classList.remove('active');
 
       var path = getActivePath();
       var hash = window.location.hash;
 
       if (path === '' || path === '/') {
         if (hash) {
-          var matched = false;
           items.forEach(function(item) {
             var href = item.getAttribute('href') || '';
             if (href.indexOf(hash) !== -1) {
               item.parentElement.classList.add('active');
-              matched = true;
             }
           });
-          if (!matched && homeLink) homeLink.parentElement.classList.add('active');
         } else {
-          if (homeLink) homeLink.parentElement.classList.add('active');
+          var firstItem = items[0];
+          if (firstItem) firstItem.parentElement.classList.add('active');
         }
         return;
       }
@@ -64,17 +75,57 @@
     highlightActive();
 
     items.forEach(function(item) {
-      item.addEventListener('click', function() {
+      item.addEventListener('click', function(e) {
+        var href = item.getAttribute('href') || '';
+        var path = window.location.pathname;
+        if ((href === '/' || href === '') && (path === '/' || path === '')) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
         items.forEach(function(i) { i.parentElement.classList.remove('active'); });
-        if (homeLink) homeLink.parentElement.classList.remove('active');
         item.parentElement.classList.add('active');
       });
     });
 
-    if (homeLink) {
-      homeLink.addEventListener('click', function() {
-        items.forEach(function(i) { i.parentElement.classList.remove('active'); });
-        homeLink.parentElement.classList.add('active');
+    // Close hamburger when clicking a hidden link
+    document.querySelectorAll('.hidden-links').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A' || e.target.closest('a')) {
+          el.classList.add('hidden');
+          var btn = document.querySelector('.greedy-nav button');
+          if (btn) { btn.classList.remove('close'); }
+        }
+      });
+    });
+  })();
+</script>
+
+<script>
+  (function() {
+    var toggle = document.getElementById('theme-toggle');
+    var sunIcon = toggle ? toggle.querySelector('.theme-icon-sun') : null;
+    var moonIcon = toggle ? toggle.querySelector('.theme-icon-moon') : null;
+    var saved = localStorage.getItem('theme') || 'light';
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+    function updateIcons() {
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (sunIcon) sunIcon.style.display = isDark ? 'block' : 'none';
+      if (moonIcon) moonIcon.style.display = isDark ? 'none' : 'block';
+    }
+    updateIcons();
+    if (toggle) {
+      toggle.addEventListener('click', function() {
+        var current = document.documentElement.getAttribute('data-theme');
+        if (current === 'dark') {
+          document.documentElement.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+        }
+        updateIcons();
       });
     }
   })();

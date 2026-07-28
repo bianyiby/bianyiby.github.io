@@ -58,22 +58,16 @@
   }
 
   &.active a {
-    display: inline-block;
     color: #fff !important;
     background: #00369f;
     border-radius: 4px;
-    padding: 0.25em 0.5em !important;
-    margin: 0 0.5rem;
   }
 }
 
-.masthead__menu-item--lg.active a {
-  display: inline-block;
+.visible-links .masthead__menu-item--lg.active a {
   color: #fff !important;
   background: #00369f;
   border-radius: 4px;
-  padding: 0.25em 0.5em !important;
-  margin: 0 0.5rem;
 }
 
 

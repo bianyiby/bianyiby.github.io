@@ -295,8 +295,8 @@ body:hover .visually-hidden button {
   height: $navicon-height;
   background: #fff;
   margin: auto;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  -webkit-transition: none;
+  transition: none;
 
   &:before,
   &:after {
@@ -306,8 +306,8 @@ body:hover .visually-hidden button {
     width: $navicon-width;
     height: $navicon-height;
     background: #fff;
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
+    -webkit-transition: none;
+    transition: none;
   }
 
   &:before {

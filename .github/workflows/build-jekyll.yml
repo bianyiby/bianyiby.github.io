@@ -26,6 +26,11 @@ jobs:
       - name: Fetch abstracts from Semantic Scholar
         run: python3 scripts/fetch_abstracts.py
 
+      - name: Generate student photos
+        run: |
+          pip install pillow
+          python3 scripts/generate_student_photos.py
+
       - name: Commit updated abstracts
         run: |
           git config user.name "github-actions[bot]"

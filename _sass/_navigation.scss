@@ -229,11 +229,11 @@
       &:before {
         content: "";
         position: absolute;
-        left: 0;
+        left: -8px;
         bottom: 0;
         height: 4px;
         background: #f89407;
-        width: 100%;
+        width: calc(100% + 16px);
         -webkit-transition: $global-transition;
         transition: $global-transition;
         -webkit-transform: scaleX(0);
@@ -246,6 +246,16 @@
             -ms-transform: scaleX(1);
                 transform: scaleX(1); /* reveal*/
       }
+    }
+
+    li.active a {
+      outline: 1px solid #00369f;
+      outline-offset: -1px;
+      border-radius: 4px;
+      padding-left: 8px;
+      padding-right: 8px;
+      margin-left: calc(1rem - 8px);
+      margin-right: calc(1rem - 8px);
     }
   }
 
