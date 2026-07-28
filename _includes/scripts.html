@@ -81,5 +81,33 @@
     });
     setTimeout(initPubButtons, 1000);
     setTimeout(initPubButtons, 3000);
+
+    var backToTop = document.getElementById('back-to-top');
+    if (backToTop) {
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      });
+      backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Scroll fade-in
+    var sections = document.querySelectorAll('.page__content > h1, .page__content > h2, .page__content > .news-list, .page__content > .student-grid, .page__content > .publications, .page__content > .paper-box');
+    sections.forEach(function(s) { s.classList.add('scroll-fade'); });
+    var fadeObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(function(s) { fadeObserver.observe(s); });
   })();
 </script>

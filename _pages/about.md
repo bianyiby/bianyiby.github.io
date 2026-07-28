@@ -30,6 +30,17 @@ My research interests broadly lie broadly in cryptography and security, with a p
 - *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
 - *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.  -->
 
+# 🔥 News
+<div class="news-list" markdown="1">
+- *2025.07*: &nbsp;🎉 One paper accepted by ACM CCS 2025.
+- *2025.02*: &nbsp;🎉 One paper accepted by IEEE TC.
+- *2025.01*: &nbsp;🏛️ Started postdoctoral fellowship at UCAS.
+- *2025.01*: &nbsp;🎓 Received Ph.D. degree from UCAS.
+- *2024.08*: &nbsp;🎉 One paper accepted by IEEE ICPADS 2024.
+- *2024.01*: &nbsp;🎉 One paper accepted by CHES 2024.
+- *2023.06*: &nbsp;🎉 One paper accepted by ACM ICPP 2023.
+</div>
+
 # ✨ Highlights
 The full list is available on <a href='https://scholar.google.com/citations?hl=zh-CN&user=GiwxKKcAAAAJ'><img src="https://img.shields.io/badge/Google%20Scholar-blue"></a> and [📚 Full Publications »](/publications/)
 <div class="publications selected-publications">
@@ -64,3 +75,43 @@ The full list is available on <a href='https://scholar.google.com/citations?hl=z
 - *2026.01*:  Young Scientists Fund of the National Natural Science Foundation of China (NSFC青年基金C类, PI)
 - *2026.07*:  China Postdoctoral Science Foundation — Special Funding（中国博士后科学基金特别资助项目，PI）
 - *2025.07*:  China Postdoctoral Science Foundation — General Funding（中国博士后科学基金面上资助, PI）
+
+# 👥 Students
+{: #students}
+{:style="margin-bottom: 5px;"}
+> I co-supervise the following students.
+{:style="margin-top: 0;"}
+<div class="student-grid">
+<div class="student-card">
+  <img src="/images/students/student-kaisun.jpg?v=1" class="student-photo">
+  <div class="student-info">
+    <strong>孙凯 (Kai Sun)</strong><br>
+    <span class="student-detail">Ph.D. student</span><br>
+    <span class="student-detail">Since 2024</span>
+  </div>
+</div>
+<div class="student-card">
+  <img src="/images/students/student-haochenhuang.jpg?v=1" class="student-photo">
+  <div class="student-info">
+    <strong>黄浩宸 (Haochen Huang)</strong><br>
+    <span class="student-detail">Master student</span><br>
+    <span class="student-detail">Since 2024</span>
+  </div>
+</div>
+<div class="student-card">
+  <img src="/images/students/student-xuegangyang.jpg?v=1" class="student-photo">
+  <div class="student-info">
+    <strong>杨学刚 (Xuegang Yang)</strong><br>
+    <span class="student-detail">Ph.D. student</span><br>
+    <span class="student-detail">Since 2024</span>
+  </div>
+</div>
+<div class="student-card">
+  <img src="/images/students/student-zimingwang.jpg?v=1" class="student-photo">
+  <div class="student-info">
+    <strong>王子铭 (Ziming Wang)</strong><br>
+    <span class="student-detail">Master student</span><br>
+    <span class="student-detail">Since 2025</span>
+  </div>
+</div>
+</div>

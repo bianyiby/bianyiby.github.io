@@ -244,3 +244,95 @@ h1:before, .anchor:before {
     border-color: #28a745;
 }
 .hidden { display: none !important; }
+
+/* Back to top button */
+#back-to-top {
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #0072c5;
+    color: #fff;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+#back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+#back-to-top:hover {
+    background: #005a9e;
+    transform: translateY(-2px);
+}
+
+/* News scrolling list */
+.news-list {
+    max-height: 160px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+.news-list::-webkit-scrollbar {
+    width: 4px;
+}
+.news-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
+}
+.news-list::-webkit-scrollbar-track {
+    background: #f5f5f5;
+}
+
+/* 2. Scroll fade-in */
+.scroll-fade {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.scroll-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* (effects removed) */
+
+/* Student cards */
+.student-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8em;
+}
+.student-card {
+    display: flex;
+    align-items: center;
+    padding: 0.7em;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background: #fff;
+    transition: box-shadow 0.2s;
+}
+.student-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.student-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 0.6em;
+    flex-shrink: 0;
+}
+.student-info {
+    line-height: 1.4;
+}
+.student-detail {
+    color: #7a828a;
+    font-size: 0.8em;
+}
