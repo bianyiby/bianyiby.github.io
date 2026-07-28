@@ -8,7 +8,7 @@
   {% assign canonical_url = page.url | replace: "index.html", "" | prepend: site.url %}
 {% endif %}
 
-<title>{{ site.title }} - Homepage</title>
+<title>{{ site.title }} | UCAS</title>
 
 {% assign seo_description = page.description | default: page.excerpt | default: site.description %}
 {% if seo_description %}
@@ -92,7 +92,9 @@
   "sameAs": [
     "https://scholar.google.com/citations?hl=zh-CN&user=GiwxKKcAAAAJ",
     "https://dblp.org/pid/133/2197-1.html",
-    "https://orcid.org/0009-0008-4308-3084"
+    "https://orcid.org/0009-0008-4308-3084",
+    "https://people.ucas.edu.cn/~bianyi",
+    "https://people.ucas.edu.cn/~bianyi?language=en"
   ],
   "knowsAbout": [
     "Applied Cryptography",
