@@ -9,7 +9,6 @@
 </script>
 
 {% include analytics.html %}
-{% include fetch_google_scholar_stats.html %}
 
 <script>
   (function() {
@@ -189,4 +188,18 @@
       });
     })();
   })();
+</script>
+
+<script>
+  function copyEmail(e, email) {
+    navigator.clipboard.writeText(email).then(function() {
+      var tooltip = document.createElement('div');
+      tooltip.className = 'copy-tooltip';
+      tooltip.textContent = 'Copied!';
+      tooltip.style.left = (e.clientX + 12) + 'px';
+      tooltip.style.top = (e.clientY - 8) + 'px';
+      document.body.appendChild(tooltip);
+      setTimeout(function() { tooltip.remove(); }, 1000);
+    });
+  }
 </script>

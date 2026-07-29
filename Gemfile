@@ -28,4 +28,4 @@ group :jekyll_plugins do
 end
 
 gem 'observer'
-gem 'uri', '= 0.10.0.2'
+gem 'uri', '= 0.10.0.2' if RUBY_VERSION < '3.0'

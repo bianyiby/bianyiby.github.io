@@ -28,16 +28,9 @@
 {%- if entry.year %}, {{ entry.year }}{%- endif -%}
 {%- endcapture -%}
 
-{%- assign ccf = '' -%}
-{%- case entry.abbr -%}
-  {%- when 'CCS' -%}{%- assign ccf = 'A' -%}
-  {%- when 'TC' -%}{%- assign ccf = 'A' -%}
-  {%- when 'ICPP' -%}{%- assign ccf = 'B' -%}
-  {%- when 'TCHES' -%}{%- assign ccf = 'B' -%}
-  {%- when 'ICPADS' -%}{%- assign ccf = 'C' -%}
-{%- endcase -%}
+{%- assign venue_data = site.data.venues[entry.abbr] -%}
 {%- capture ccf_badge -%}
-{%- if ccf != '' -%}<span class="ccf-badge ccf-{{ ccf | downcase }}">CCF-{{ ccf }}</span>{%- endif -%}
+{%- if venue_data.ccf %}<span class="ccf-badge ccf-{{ venue_data.ccf | downcase }}">CCF-{{ venue_data.ccf }}</span>{%- endif -%}
 {%- endcapture -%}
 
 {% if entry.preview %}

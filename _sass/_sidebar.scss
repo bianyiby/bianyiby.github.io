@@ -248,8 +248,9 @@
     font-size: $type-size-5;
     text-decoration: none;
 
-    &:hover {
+    &:hover, &:focus, &:active {
       text-decoration: underline;
+      outline: none;
     }
   }
 }
@@ -272,8 +273,10 @@
   a {
     color: inherit;
     text-decoration: none;
-    &:hover {
+    outline: none;
+    &:hover, &:focus, &:active {
       text-decoration: underline;
+      outline: none;
     }
   }
   @include breakpoint($large) {

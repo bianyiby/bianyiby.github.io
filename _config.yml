@@ -26,7 +26,7 @@ baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.ba
 # Site Author
 author:
   name             : "Yi Bian (边毅)"
-  avatar           : "/images/yibian_20240121.jpg"
+  avatar           : "/images/yibian_20240121_square.jpg"
   bio              : "Postdoctoral Fellow in UCAS"
   location         : "Beijing, China"
   employer         :
@@ -41,7 +41,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : # e.g., "github username"
+  github           :
   google_plus      :
   keybase          :
   instagram        :

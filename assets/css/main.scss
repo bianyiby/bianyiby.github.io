@@ -190,10 +190,10 @@ html[data-theme="dark"] body {
 }
 
 [data-theme="dark"] #back-to-top {
-    background: var(--link-color) !important;
+    background: #02369f !important;
 }
 [data-theme="dark"] #back-to-top:hover {
-    background: var(--link-hover) !important;
+    background: #005a9e !important;
 }
 
 [data-theme="dark"] blockquote {
@@ -303,6 +303,22 @@ html[data-theme="dark"] body {
 }
 [data-theme="dark"] .greedy-nav .hidden-links:before {
     border-color: var(--border-color) transparent !important;
+}
+
+.author__avatar img {
+    display: block !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+}
+@media (min-width: 57.8125em) {
+    .author__avatar img {
+        width: 170px !important;
+        height: 175px !important;
+        padding: 5px !important;
+        border: 1px solid #f2f3f3 !important;
+        background: #fff !important;
+    }
 }
 
 [data-theme="dark"] .author__avatar img {
@@ -610,21 +626,23 @@ html {
 /* Back to top button */
 #back-to-top {
     position: fixed;
-    bottom: 2em;
+    bottom: 2.3em;
     right: 2em;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: #0072c5;
+    background: #00369f;
     color: #fff;
     border: none;
-    font-size: 1.2em;
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s;
     z-index: 999;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #back-to-top.visible {
     opacity: 1;
@@ -771,4 +789,52 @@ html {
 }
 .paper-box-image img {
     cursor: zoom-in;
+}
+.copy-tooltip {
+    position: fixed;
+    z-index: 10000;
+    background: #333;
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    white-space: nowrap;
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.copy-tooltip:after {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-right-color: #333;
+}
+[data-theme="dark"] .copy-tooltip {
+    background: #5dade2;
+    color: #1a1a2e;
+}
+[data-theme="dark"] .copy-tooltip:after {
+    border-right-color: #5dade2;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: #555;
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: #777;
 }

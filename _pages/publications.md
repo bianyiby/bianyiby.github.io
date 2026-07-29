@@ -17,11 +17,9 @@ author_profile: true
 <script>
   (function() {
     var venueMap = {
-      'CCS':    { ccf: 'A' },
-      'ICPP':   { ccf: 'B' },
-      'ICPADS': { ccf: 'C' },
-      'TC':     { ccf: 'A' },
-      'TCHES':  { ccf: 'B'}
+      {% for item in site.data.venues %}
+      '{{ item[0] }}': { ccf: '{{ item[1].ccf }}'{% if item[1].jcr %}, jcr: '{{ item[1].jcr }}'{% endif %} },
+      {% endfor %}
     };
 
     function makeBadge(cls, text) {

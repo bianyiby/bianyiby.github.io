@@ -1,9 +1,14 @@
 name: Get Citation Data
 
-on: 
- page_build: 
- schedule:
-  - cron:  '0 8 * * *'
+# Disabled: citation badge is currently commented out on the homepage.
+# Re-enable by uncommenting the on/schedule triggers below.
+# on: 
+#  page_build: 
+#  schedule:
+#   - cron:  '0 8 * * *'
+
+on:
+  workflow_dispatch:
 
 jobs:
   build:

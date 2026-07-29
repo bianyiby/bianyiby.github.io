@@ -8,7 +8,7 @@
   {% assign canonical_url = page.url | replace: "index.html", "" | prepend: site.url %}
 {% endif %}
 
-<title>{{ site.title }} | UCAS</title>
+<title>{% if page.title and page.title != "" %}{{ page.title }} | {% endif %}{{ site.title }} | UCAS</title>
 
 {% assign seo_description = page.description | default: page.excerpt | default: site.seo_description | default: site.description %}
 {% if seo_description %}
@@ -31,11 +31,11 @@
 
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="{{ site.title }}">
-<meta property="og:title" content="{{ site.title }}">
-<meta property="og:image" content="https://bianyiby.github.io/images/yibian_20240121.jpg">
+<meta property="og:title" content="{% if page.title and page.title != "" %}{{ page.title }} | {% endif %}{{ site.title }} | UCAS">
+    <meta property="og:image" content="https://bianyiby.github.io/images/yibian_20240121_square.jpg">
 <meta property="og:type" content="profile">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://bianyiby.github.io/images/yibian_20240121.jpg">
+    <meta name="twitter:image" content="https://bianyiby.github.io/images/yibian_20240121_square.jpg">
 {% if site.keywords %}
 <meta name="keywords" content="{{ site.keywords }}">
 {% endif %}
@@ -92,7 +92,7 @@
   },
   "email": "mailto:bianyi@ucas.ac.cn",
   "url": "https://bianyiby.github.io",
-  "image": "https://bianyiby.github.io/images/yibian_20240121.jpg",
+  "image": "https://bianyiby.github.io/images/yibian_20240121_square.jpg",
   "sameAs": [
     "https://scholar.google.com/citations?hl=zh-CN&user=GiwxKKcAAAAJ",
     "https://dblp.org/pid/133/2197-1.html",
