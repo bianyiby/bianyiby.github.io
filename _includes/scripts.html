@@ -144,6 +144,9 @@
       });
       backToTop.addEventListener('click', function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        var navItems = document.querySelectorAll('.visible-links .masthead__menu-item');
+        navItems.forEach(function(i) { i.classList.remove('active'); });
+        if (navItems[0]) navItems[0].classList.add('active');
       });
     }
 
