@@ -9,7 +9,7 @@ layout: compress
     {% include head/custom.html %}
   </head>
 
-  <body>
+  <body onkeydown="if(event.key==='Escape'){var lb=document.getElementById('img-lightbox');if(lb)lb.classList.remove('open')}">
 
     {% include browser-upgrade.html %}
     {% include masthead.html %}
@@ -30,6 +30,11 @@ layout: compress
     {% include scripts.html %}
 
     <button id="back-to-top" title="Back to top">&#8593;</button>
+
+    <div id="img-lightbox" class="img-lightbox" onclick="if(event.target===this)this.classList.remove('open')">
+      <span class="img-lightbox-close" onclick="document.getElementById('img-lightbox').classList.remove('open')">&times;</span>
+      <img class="img-lightbox-content" id="img-lightbox-img">
+    </div>
 
     <footer class="page__footer">
       <div class="page__footer-copyright" style="text-align: center;">

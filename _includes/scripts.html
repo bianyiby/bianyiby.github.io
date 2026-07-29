@@ -82,6 +82,43 @@
     setTimeout(initPubButtons, 1000);
     setTimeout(initPubButtons, 3000);
 
+    // Inject abstracts into homepage highlight paper-boxes
+    (function() {
+      var boxes = document.querySelectorAll('.selected-publications .paper-box');
+      if (!boxes.length) return;
+      fetch('/publications/').then(function(r) { return r.text(); }).then(function(html) {
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        var absMap = {};
+        doc.querySelectorAll('.publications-list ol.bibliography li').forEach(function(li) {
+          var absData = li.querySelector('.pub-abstract-data');
+          if (!absData) return;
+          var p = li.querySelector('p[data-category]');
+          if (!p) return;
+          var fullText = p.textContent.trim();
+          var titleMatch = fullText.match(/\u201c(.+?)\u201d/);
+          if (titleMatch) absMap[titleMatch[1].replace(/[,.\s]+$/, '').trim()] = absData.textContent.trim();
+        });
+        boxes.forEach(function(box) {
+          var titleEl = box.querySelector('.paper-box-text p a');
+          if (!titleEl) return;
+          var abs = absMap[titleEl.textContent.trim()];
+          if (!abs) return;
+          var textDiv = box.querySelector('.paper-box-text');
+          if (!textDiv) return;
+          var absDiv = document.createElement('div');
+          absDiv.className = 'hl-abstract collapsed';
+          absDiv.innerHTML = '<div class="hl-abstract-text"><span class="hl-abstract-label">Abstract: </span></div><span class="hl-abstract-toggle" role="button">&#9662; Expand</span>';
+          absDiv.querySelector('.hl-abstract-label').insertAdjacentText('afterend', abs);
+          textDiv.appendChild(absDiv);
+          var toggle = absDiv.querySelector('.hl-abstract-toggle');
+          toggle.addEventListener('click', function() {
+            absDiv.classList.toggle('collapsed');
+            toggle.innerHTML = absDiv.classList.contains('collapsed') ? '&#9662; Expand' : '&#9652; Collapse';
+          });
+        });
+      }).catch(function() {});
+    })();
+
     var backToTop = document.getElementById('back-to-top');
     if (backToTop) {
       window.addEventListener('scroll', function() {
@@ -109,5 +146,28 @@
       });
     }, { threshold: 0.1 });
     sections.forEach(function(s) { fadeObserver.observe(s); });
+
+    // Image lightbox
+    (function() {
+      var lightbox = document.getElementById('img-lightbox');
+      var lbImg = document.getElementById('img-lightbox-img');
+      var lbClose = document.querySelector('.img-lightbox-close');
+      if (!lightbox || !lbImg) return;
+      document.addEventListener('click', function(e) {
+        if (e.target.tagName === 'IMG' && e.target.closest('.paper-box-image')) {
+          e.preventDefault();
+          lbImg.src = e.target.src;
+          lightbox.classList.add('open');
+        }
+      });
+      function close() { lightbox.classList.remove('open'); }
+      if (lbClose) lbClose.addEventListener('click', close);
+      lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) close();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') close();
+      });
+    })();
   })();
 </script>
