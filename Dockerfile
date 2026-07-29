@@ -1,4 +1,4 @@
-FROM ruby:2.7-bullseye
+FROM ruby:3.3-bullseye
 
 ENV BUNDLE_PATH=/usr/local/bundle \
     BUNDLE_WITHOUT=""

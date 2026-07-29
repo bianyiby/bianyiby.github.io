@@ -1,6 +1,5 @@
 services:
   website:
-    platform: linux/amd64
     build: .
     ports:
       - "4002:4000"

@@ -218,6 +218,7 @@
 
     a {
       position: relative;
+      transition: box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
 
       &:before {
         content: "";
@@ -242,9 +243,9 @@
     }
 
     li.active a {
-      outline: 1px solid #00369f;
-      outline-offset: -1px;
+      box-shadow: 0 0 0 1px #00369f inset;
       border-radius: 4px;
+      transition: box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
     }
   }
 
