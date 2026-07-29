@@ -110,6 +110,7 @@ author_profile: true
         h2.textContent = g.year;
         h2.id = 'pub-year-' + g.year;
         container.appendChild(h2);
+        if (window.registerFadeIn) window.registerFadeIn(h2);
 
         var newOl = document.createElement('ol');
         newOl.className = 'bibliography';
