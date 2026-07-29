@@ -31,8 +31,8 @@ layout: compress
 
     <button id="back-to-top" title="Back to top">&#8593;</button>
 
-    <div id="img-lightbox" class="img-lightbox" onclick="if(event.target===this)this.classList.remove('open')">
-      <span class="img-lightbox-close" onclick="document.getElementById('img-lightbox').classList.remove('open')">&times;</span>
+    <div id="img-lightbox" class="img-lightbox" onclick="this.classList.remove('open')">
+      <span class="img-lightbox-close" onclick="event.stopPropagation();document.getElementById('img-lightbox').classList.remove('open')">&times;</span>
       <img class="img-lightbox-content" id="img-lightbox-img">
     </div>
 

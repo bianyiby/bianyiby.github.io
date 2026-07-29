@@ -715,9 +715,12 @@ h1:before, .anchor:before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.85);
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     justify-content: center;
     align-items: center;
+    cursor: zoom-out;
 }
 .img-lightbox.open {
     display: flex;
@@ -734,7 +737,7 @@ h1:before, .anchor:before {
     position: absolute;
     top: 20px;
     right: 30px;
-    color: #fff;
+    color: #555;
     font-size: 36px;
     font-weight: bold;
     cursor: pointer;
@@ -742,6 +745,15 @@ h1:before, .anchor:before {
     transition: color 0.2s;
 }
 .img-lightbox-close:hover {
+    color: #e94e1b;
+}
+[data-theme="dark"] .img-lightbox {
+    background: rgba(20,20,30,0.6);
+}
+[data-theme="dark"] .img-lightbox-close {
+    color: #ccc;
+}
+[data-theme="dark"] .img-lightbox-close:hover {
     color: #5dade2;
 }
 .paper-box-image img {
