@@ -21,7 +21,7 @@ redirect_from:
 
 My research interest includes neural machine translation and computer vision. I have published more than 100 papers at the top international AI conferences with total <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'>google scholar citations <strong><span id='total_cit'>260000+</span></strong></a> (You can also use google scholar badge <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>). -->
 # 👏🏻 Welcome to my homepage!
-I am currently a Postdoctoral Fellow at the School of Cryptology, University of Chinese Academy of Sciences (UCAS). I received my Ph.D. degree from UCAS under the supervision of Prof. <a href="https://people.ucas.ac.cn/~0006150">Jiwu Jing (荆继武) </a>, CACR Fellow. I have also had the privilege of working with Assoc. Prof. <a href="https://zhengfangyu.github.io/"> Fangyu Zheng (郑昉昱) </a> and collaborating with Prof. <a href="https://people.ucas.ac.cn/~0006707">Yuewu Wang (王跃武) </a> and Prof.  <a href="https://people.ucas.edu.cn/~sunsiwei">Siwei Sun (孙思维) </a>.
+I am currently a Postdoctoral Fellow at the School of Cryptology, University of Chinese Academy of Sciences (<a href="https://people.ucas.edu.cn/~bianyi" target="_blank" rel="noopener noreferrer">UCAS</a>). I received my Ph.D. degree from UCAS under the supervision of Prof. <a href="https://people.ucas.ac.cn/~0006150" target="_blank" rel="noopener noreferrer">Jiwu Jing (荆继武) </a>, CACR Fellow. I have also had the privilege of working with Assoc. Prof. <a href="https://zhengfangyu.github.io/" target="_blank" rel="noopener noreferrer"> Fangyu Zheng (郑昉昱) </a> and collaborating with Prof. <a href="https://people.ucas.ac.cn/~0006707" target="_blank" rel="noopener noreferrer">Yuewu Wang (王跃武) </a> and Prof.  <a href="https://people.ucas.edu.cn/~sunsiwei" target="_blank" rel="noopener noreferrer">Siwei Sun (孙思维) </a>.
 
 My research interests broadly lie broadly in cryptography and security, with a particular focus on applied cryptography, privacy-preserving computation, and high-performance computing.
 
@@ -42,7 +42,7 @@ My research interests broadly lie broadly in cryptography and security, with a p
 </div>
 
 # ✨ Highlights
-The full list is available on <a href='https://scholar.google.com/citations?hl=zh-CN&user=GiwxKKcAAAAJ'><img src="https://img.shields.io/badge/Google%20Scholar-blue"></a> and [📚 Full Publications »](/publications/)
+The full list is available on <a href='https://scholar.google.com/citations?hl=zh-CN&user=GiwxKKcAAAAJ' target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Google%20Scholar-blue"></a> and [📚 Full Publications »](/publications/)
 <div class="publications selected-publications">
 {% bibliography --file selected --no_group_by %}
 </div>

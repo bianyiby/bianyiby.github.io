@@ -49,11 +49,11 @@
     </div>
   </div>
   <div class="paper-box-text">
-    <p>{% if entry.html %}<a href="{{ entry.html }}">{{ entry.title }}</a>{% else %}{{ entry.title }}{% endif %}</p>
+    <p>{% if entry.html %}<a href="{{ entry.html }}" target="_blank" rel="noopener noreferrer">{{ entry.title }}</a>{% else %}{{ entry.title }}{% endif %}</p>
     <p>{{ author_html }}, {{ venue }} {{ ccf_badge }}</p>
   </div>
 </div>
 {% else %}
-<p>{% if entry.abbr %}<span class="badge">{{ entry.abbr }}</span> {% endif %}{% if entry.html %}<a href="{{ entry.html }}">{{ entry.title }}</a>{% else %}{{ entry.title }}{% endif %}<br>
+<p>{% if entry.abbr %}<span class="badge">{{ entry.abbr }}</span> {% endif %}{% if entry.html %}<a href="{{ entry.html }}" target="_blank" rel="noopener noreferrer">{{ entry.title }}</a>{% else %}{{ entry.title }}{% endif %}<br>
 {{ author_html }}, {{ venue }} {{ ccf_badge }}</p>
 {% endif %}
