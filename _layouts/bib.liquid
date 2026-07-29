@@ -46,7 +46,7 @@
   <div class="paper-box-image">
     <div>
       {% if entry.abbr %}<div class="badge">{{ entry.abbr }}</div>{% endif %}
-      <img src="{{ entry.preview | relative_url }}" alt="preview" width="100%" onclick="document.getElementById('img-lightbox-img').src=this.src;document.getElementById('img-lightbox').classList.add('open')" style="cursor:zoom-in">
+      <img src="{{ entry.preview | relative_url }}" alt="preview" width="100%" onclick="event.stopPropagation();document.getElementById('img-lightbox-img').src=this.src;document.getElementById('img-lightbox').classList.add('open')" style="cursor:zoom-in">
     </div>
   </div>
   <div class="paper-box-text">

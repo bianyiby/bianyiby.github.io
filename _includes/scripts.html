@@ -83,6 +83,11 @@
     setTimeout(initPubButtons, 3000);
 
     // Inject abstracts into homepage highlight paper-boxes
+    window.toggleHlAbstract = function(el) {
+      var parent = el.parentElement;
+      parent.classList.toggle('collapsed');
+      el.innerHTML = parent.classList.contains('collapsed') ? '&#9662; Expand' : '&#9652; Collapse';
+    };
     (function() {
       var boxes = document.querySelectorAll('.selected-publications .paper-box');
       if (!boxes.length) return;
@@ -107,14 +112,9 @@
           if (!textDiv) return;
           var absDiv = document.createElement('div');
           absDiv.className = 'hl-abstract collapsed';
-          absDiv.innerHTML = '<div class="hl-abstract-text"><span class="hl-abstract-label">Abstract: </span></div><span class="hl-abstract-toggle" role="button">&#9662; Expand</span>';
+          absDiv.innerHTML = '<div class="hl-abstract-text"><span class="hl-abstract-label">Abstract: </span></div><span class="hl-abstract-toggle" role="button" onclick="event.stopPropagation();toggleHlAbstract(this)">&#9662; Expand</span>';
           absDiv.querySelector('.hl-abstract-label').insertAdjacentText('afterend', abs);
           textDiv.appendChild(absDiv);
-          var toggle = absDiv.querySelector('.hl-abstract-toggle');
-          toggle.addEventListener('click', function() {
-            absDiv.classList.toggle('collapsed');
-            toggle.innerHTML = absDiv.classList.contains('collapsed') ? '&#9662; Expand' : '&#9652; Collapse';
-          });
         });
       }).catch(function() {});
     })();
