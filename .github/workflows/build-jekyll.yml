@@ -45,6 +45,10 @@ jobs:
           ruby-version: '3.3'
           bundler-cache: true
 
+      - name: Patch jekyll-scholar for Ruby 3.3
+        run: |
+          find $(bundle show jekyll-scholar) -name "*.rb" -exec sed -i 's/File\.exists?/File.exist?/g' {} \;
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
