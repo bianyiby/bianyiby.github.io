@@ -76,6 +76,13 @@
 
     items.forEach(function(item) {
       item.addEventListener('click', function(e) {
+        // Close hamburger menu if this link is inside hidden-links
+        var hiddenParent = item.closest('.hidden-links');
+        if (hiddenParent) {
+          hiddenParent.classList.add('hidden');
+          var navBtn = document.querySelector('.greedy-nav button');
+          if (navBtn) { navBtn.classList.remove('close'); }
+        }
         var href = item.getAttribute('href') || '';
         var path = window.location.pathname;
         if ((href === '/' || href === '') && (path === '/' || path === '')) {
