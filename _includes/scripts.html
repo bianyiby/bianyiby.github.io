@@ -93,8 +93,15 @@
     // Inject abstracts into homepage highlight paper-boxes
     window.toggleHlAbstract = function(el) {
       var parent = el.parentElement;
-      parent.classList.toggle('collapsed');
-      el.innerHTML = parent.classList.contains('collapsed') ? '&#9662; Expand' : '&#9652; Collapse';
+      if (parent.classList.contains('collapsed')) {
+        parent.classList.remove('collapsed');
+        el.innerHTML = '&#9652; Collapse';
+      } else {
+        var textDiv = parent.querySelector('.hl-abstract-text');
+        if (textDiv) textDiv.scrollTop = 0;
+        parent.classList.add('collapsed');
+        el.innerHTML = '&#9662; Expand';
+      }
     };
     (function() {
       var boxes = document.querySelectorAll('.selected-publications .paper-box');
