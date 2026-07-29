@@ -65,7 +65,7 @@ author_profile: true
 
         var html = span.innerHTML;
         html = html.replace(/Yi Bian/g, '<u><strong style="color:#01369f;background:#eef3fc;padding:0 2px;">Yi Bian</strong></u>');
-        var badges = abbrHtml + classify(abbr);
+        var badges = abbrHtml + '&nbsp;' + classify(abbr);
         if (html.match(/doi:\s*((10\.[0-9]{4,}[^\s,)]+))/)) {
           html = html.replace(/doi:\s*((10\.[0-9]{4,}[^\s,)]+))/g, function(match, doi) {
             doi = doi.replace(/[.;]+$/, '');
