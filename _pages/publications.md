@@ -57,13 +57,23 @@ author_profile: true
         if (!span) return;
         var abbrEl = li.querySelector('.badge');
         var abbr = abbrEl ? abbrEl.textContent.trim() : '';
+        var abbrHtml = abbrEl ? '<span class="ccf-badge ccf-abbr">' + abbr + '</span>' : '';
+        if (abbrEl) {
+          abbrEl.remove();
+          if (p.firstChild && p.firstChild.nodeType === 3) p.removeChild(p.firstChild);
+        }
+
         var html = span.innerHTML;
         html = html.replace(/Yi Bian/g, '<u><strong style="color:#01369f;background:#eef3fc;padding:0 2px;">Yi Bian</strong></u>');
-        html = html.replace(/doi:\s*((10\.[0-9]{4,}[^\s,)]+))/g, function(match, doi) {
-          doi = doi.replace(/[.;]+$/, '');
-          var badges = classify(abbr);
-          return 'doi: <a href="https://doi.org/' + doi + '" target="_blank" rel="noopener noreferrer">' + doi + '</a>' + badges;
-        });
+        var badges = abbrHtml + classify(abbr);
+        if (html.match(/doi:\s*((10\.[0-9]{4,}[^\s,)]+))/)) {
+          html = html.replace(/doi:\s*((10\.[0-9]{4,}[^\s,)]+))/g, function(match, doi) {
+            doi = doi.replace(/[.;]+$/, '');
+            return 'doi: <a href="https://doi.org/' + doi + '" target="_blank" rel="noopener noreferrer">' + doi + '</a>&nbsp;&nbsp;' + badges;
+          });
+        } else {
+          html += '&nbsp;&nbsp;' + badges;
+        }
         span.innerHTML = html;
 
         var id = span.id || '';
