@@ -674,8 +674,10 @@ html {
 }
 .student-item {
     flex: 0 0 calc(33.333% - 0.55em);
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
     text-align: left;
-    vertical-align: top;
     padding: 0.7em;
     border: 1px solid #eee;
     border-radius: 8px;
@@ -697,9 +699,12 @@ html {
     max-height: 20vw;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 0.3em;
-    vertical-align: middle;
-    margin-right: 0.5em;
+    flex-shrink: 0;
+}
+.student-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .student-meta {
     color: #7a828a;

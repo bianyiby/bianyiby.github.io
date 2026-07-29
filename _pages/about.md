@@ -86,8 +86,10 @@ The full list is available on <a href='https://scholar.google.com/citations?hl=z
 {% for s in site.data.students %}
 <div class="student-item">
   <img src="/images/students/{{ s.photo }}" class="student-photo">
-  <strong>{{ s.name }}</strong><br>
-  <span class="student-meta">{{ s.type }}, Since {{ s.since }}</span>
+  <div class="student-info">
+    <strong>{{ s.name }}</strong>
+    <span class="student-meta">{{ s.type }}, Since {{ s.since }}</span>
+  </div>
 </div>
 {% endfor %}
 </div>
