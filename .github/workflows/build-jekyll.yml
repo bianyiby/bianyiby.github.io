@@ -42,12 +42,8 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3'
+          ruby-version: '2.7'
           bundler-cache: true
-
-      - name: Patch jekyll-scholar for Ruby 3.3
-        run: |
-          find $(bundle show jekyll-scholar) -name "*.rb" -exec sed -i 's/File\.exists?/File.exist?/g' {} \;
 
       - name: Setup Pages
         id: pages
