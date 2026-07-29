@@ -7,7 +7,8 @@
 
 # Site Settings
 title                    : "Yi Bian (边毅)"
-description              : "Yi Bian (边毅) - Postdoctoral Fellow at UCAS. Research on applied cryptography, lattice-based cryptography, privacy-preserving computation, post-quantum cryptography, side-channel analysis, and hardware security."
+description              : "Focusing on applied cryptography and privacy-preserving computation."
+seo_description          : "Yi Bian (边毅) - Postdoctoral Fellow at UCAS. Research on applied cryptography, lattice-based cryptography, privacy-preserving computation, post-quantum cryptography, side-channel analysis, and hardware security."
 keywords                : "Yi Bian, 边毅, bianyi, bian yi, yibian, applied cryptography, lattice cryptography, privacy-preserving computation, post-quantum cryptography, side-channel analysis, hardware security, UCAS, postdoctoral fellow, https://people.ucas.edu.cn/~bianyi"
 repository               : "bianyiby/bianyiby.github.io"
 url                      : "https://bianyiby.github.io"
