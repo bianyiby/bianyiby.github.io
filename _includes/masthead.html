@@ -80,12 +80,51 @@
         var path = window.location.pathname;
         if ((href === '/' || href === '') && (path === '/' || path === '')) {
           e.preventDefault();
+          e.stopImmediatePropagation();
+          items.forEach(function(i) { i.parentElement.classList.remove('active'); });
+          item.parentElement.classList.add('active');
           window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (href.indexOf('#') !== -1) {
+          var hashIndex = href.indexOf('#');
+          var linkPath = href.substring(0, hashIndex);
+          var hash = href.substring(hashIndex);
+          var samePage = (linkPath === '' || linkPath === path || linkPath + '/' === path);
+          if (samePage) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            items.forEach(function(i) { i.parentElement.classList.remove('active'); });
+            item.parentElement.classList.add('active');
+            var target = document.querySelector(hash);
+            if (target) {
+              target.style.transition = 'none';
+              target.classList.add('visible');
+              var rect = target.getBoundingClientRect();
+              var navHeight = document.querySelector('.masthead').offsetHeight;
+              window.scrollTo({ top: window.pageYOffset + rect.top - navHeight - 10, behavior: 'smooth' });
+              setTimeout(function() { target.style.transition = ''; }, 100);
+            }
+          }
         }
-        items.forEach(function(i) { i.parentElement.classList.remove('active'); });
-        item.parentElement.classList.add('active');
-      });
+      }, true);
     });
+
+    // On homepage load, scroll to hash if present
+    var currentHash = window.location.hash;
+    if (currentHash && (path === '/' || path === '')) {
+      window.addEventListener('load', function() {
+        var target = document.querySelector(currentHash);
+        if (target) {
+          target.style.transition = 'none';
+          target.classList.add('visible');
+          setTimeout(function() {
+            var rect = target.getBoundingClientRect();
+            var navHeight = document.querySelector('.masthead').offsetHeight;
+            window.scrollTo({ top: window.pageYOffset + rect.top - navHeight - 10 });
+            target.style.transition = '';
+          }, 300);
+        }
+      });
+    }
 
     // Close hamburger when clicking a hidden link
     document.querySelectorAll('.hidden-links').forEach(function(el) {

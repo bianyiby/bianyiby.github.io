@@ -142,6 +142,10 @@ html[data-theme="dark"] body {
 [data-theme="dark"] a { color: var(--link-color) !important; }
 [data-theme="dark"] a:hover { color: var(--link-hover) !important; }
 
+.page__content p {
+    text-align: justify;
+}
+
 [data-theme="dark"] .masthead {
     background-color: var(--nav-bg) !important;
     border-bottom-color: var(--border-color) !important;
@@ -434,7 +438,7 @@ html[data-theme="dark"] body {
     color: #5dade2;
 }
 
-$scroll_offset : 2em;
+$scroll_offset : 0em;
 h1:before, .anchor:before { 
     content: ''; 
     display: block; 
@@ -442,6 +446,10 @@ h1:before, .anchor:before {
     width: 0; 
     height: $scroll_offset; 
     margin-top: -$scroll_offset;
+}
+
+html {
+    scroll-padding-top: 60px;
 }
 
 .badge {
