@@ -313,11 +313,16 @@ html[data-theme="dark"] body {
     object-fit: cover !important;
     border-radius: 50% !important;
     box-sizing: border-box !important;
+    width: 100% !important;
+    aspect-ratio: 14 / 15 !important;
+    max-width: 175px !important;
+    min-width: 75px !important;
 }
 @media (min-width: 57.8125em) {
     .author__avatar img {
         width: 170px !important;
-        height: 175px !important;
+        height: 185px !important;
+        aspect-ratio: unset !important;
         padding: 5px !important;
         border: 1px solid #f2f3f3 !important;
         background: #fff !important;
