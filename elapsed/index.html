@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="auto" data-color="blue">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>在线时间计时器</title>
+    <link rel="stylesheet" href="./timer.css" />
+  </head>
+  <body>
+    <main class="timer-shell">
+      <section id="timer" class="timer" aria-labelledby="event-title" hidden>
+        <h1 id="event-title" class="timer__title"></h1>
+        <div class="timer__primary" aria-live="off">
+          <span id="timer-arrow" class="timer__arrow" aria-hidden="true"></span>
+          <span id="timer-value" class="timer__value"></span>
+        </div>
+        <p id="total-days" class="timer__total" hidden></p>
+        <time id="target-date" class="timer__date"></time>
+        <button id="embed-button" class="embed-button" type="button" aria-label="生成嵌入代码">
+          &lt;/&gt;
+        </button>
+        <p id="screen-reader-status" class="sr-only" aria-live="polite"></p>
+      </section>
+
+      <section id="error-panel" class="error-panel" role="alert" hidden>
+        <h1>无法启动计时器</h1>
+        <p id="error-message"></p>
+        <code>?date=2026-01-05T20:00:00&amp;title=TIFS投稿已经</code>
+      </section>
+
+      <dialog id="embed-dialog" class="embed-dialog">
+        <form id="embed-form" class="embed-form" method="dialog">
+          <header class="embed-form__header">
+            <div>
+              <h2>生成嵌入代码</h2>
+            </div>
+            <button class="embed-form__close" type="submit" value="close" aria-label="关闭">×</button>
+          </header>
+
+          <div class="embed-form__grid">
+            <label>题目<input name="title" type="text" maxlength="100" /></label>
+            <label>日期时间<input name="date" type="datetime-local" step="1" required /></label>
+            <label>
+              显示方式
+              <select name="display">
+                <option value="calendar">年月日</option>
+                <option value="days">累计天数</option>
+                <option value="both">同时显示</option>
+              </select>
+            </label>
+            <label>
+              颜色
+              <select name="color">
+                <option value="blue">蓝色</option>
+                <option value="green">绿色</option>
+                <option value="orange">橙色</option>
+                <option value="purple">紫色</option>
+              </select>
+            </label>
+            <label>
+              主题
+              <select name="theme">
+                <option value="auto">跟随系统</option>
+                <option value="light">浅色</option>
+                <option value="dark">深色</option>
+              </select>
+            </label>
+            <label>显示单位<input name="units" type="text" value="ymdhms" /></label>
+            <label>宽度<input name="width" type="text" value="100%" /></label>
+            <label>高度<input name="height" type="number" min="160" max="1200" value="240" /></label>
+          </div>
+
+          <label class="embed-form__code-label" for="embed-code">iframe 代码</label>
+          <textarea id="embed-code" class="embed-form__code" rows="5" readonly></textarea>
+          <footer class="embed-form__actions">
+            <span id="copy-status" role="status" aria-live="polite"></span>
+            <button id="copy-embed-code" class="copy-button" type="button">复制代码</button>
+          </footer>
+        </form>
+      </dialog>
+    </main>
+    <script type="module" src="./timer.js"></script>
+  </body>
+</html>
