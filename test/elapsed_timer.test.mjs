@@ -176,6 +176,8 @@ test("formatLocalDayStart defaults to local midnight on the opening day", () => 
 test("standalone markup exposes all rendering hooks", async () => {
   const html = await readFile(new URL("../elapsed/index.html", import.meta.url), "utf8");
 
+  assert.match(html, /<title>Yi Bian \| Time Counter<\/title>/);
+
   for (const hook of [
     'id="timer"',
     'id="event-title"',
