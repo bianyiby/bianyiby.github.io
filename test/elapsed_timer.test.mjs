@@ -203,13 +203,51 @@ test("standalone markup exposes all rendering hooks", async () => {
   assert.doesNotMatch(html, />Obsidian iframe 代码</);
 });
 
-test("timer styling matches the homepage font and keeps tabular numerals", async () => {
+test("timer styling uses DSEG7 Classic Bold Italic and keeps tabular numerals", async () => {
   const css = await readFile(new URL("../elapsed/timer.css", import.meta.url), "utf8");
 
   assert.match(css, /--homepage-font:\s*"Trebuchet MS", Helvetica, sans-serif/);
-  assert.match(css, /font-family:\s*var\(--homepage-font\)/);
+  assert.match(css, /@font-face/);
+  assert.match(css, /font-family:\s*"DSEG7 Classic"/);
+  assert.match(css, /dseg7-classic-bold-italic\.woff2/);
+  assert.match(css, /font-weight:\s*700/);
+  assert.match(css, /font-style:\s*italic/);
   assert.doesNotMatch(css, /DSEG7 Modern/);
   assert.match(css, /font-variant-numeric:\s*tabular-nums/);
+});
+
+test("homepage SEO keywords include the requested Yi Bian and UCAS variants", async () => {
+  const config = await readFile(new URL("../_config.yml", import.meta.url), "utf8");
+  const keywordLine = config.match(/^keywords\s*:\s*"([^"]+)"$/m);
+  assert.ok(keywordLine);
+  const keywords = keywordLine[1].split(", ");
+
+  for (const keyword of [
+    "ucas",
+    "bianyi ucas",
+    "yibian ucas",
+    "yibian",
+    "bianyi",
+    "Bian Yi",
+    "BianYi",
+    "Yi Bian",
+    "YiBian",
+  ]) {
+    assert.ok(keywords.includes(keyword), `missing SEO keyword: ${keyword}`);
+  }
+});
+
+test("Person structured data includes Yi Bian name variants", async () => {
+  const seo = await readFile(new URL("../_includes/seo.html", import.meta.url), "utf8");
+  const jsonLd = seo.match(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/);
+  assert.ok(jsonLd);
+  const person = JSON.parse(jsonLd[1]);
+
+  assert.equal(person["@type"], "Person");
+  assert.equal(person.name, "Yi Bian");
+  for (const alternateName of ["Bian Yi", "Yibian", "Bianyi"]) {
+    assert.ok(person.alternateName.includes(alternateName), `missing alternateName: ${alternateName}`);
+  }
 });
 
 test("runtime exposes display mode for stable responsive sizing", async () => {
