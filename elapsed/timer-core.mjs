@@ -151,8 +151,12 @@ export function formatPrimaryValue(duration, display, units) {
       [flags.months, duration.calendar.months, "月"],
       [flags.days, duration.calendar.days, "天"],
     ];
+    let foundNonZero = false;
     for (const [enabled, value, suffix] of calendarUnits) {
-      if (enabled) parts.push(`${value}${suffix}`);
+      if (!enabled) continue;
+      if (value === 0 && !foundNonZero) continue;
+      foundNonZero = true;
+      parts.push(`${value}${suffix}`);
     }
   }
 
