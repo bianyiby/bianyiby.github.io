@@ -28,13 +28,15 @@ My research interests broadly lie broadly in cryptography and security, with a p
 
 ## 🔥 News
 <div class="news-list" markdown="1">
-- *2025.07*: &nbsp;🎉 One paper accepted by ACM CCS 2025.
-- *2025.02*: &nbsp;🎉 One paper accepted by IEEE TC.
+- *2025.10*: &nbsp;🎉 A paper accepted by IEEE TIFS.
+- *2025.09*: &nbsp;🎉 A paper accepted by ICPADS 2026. Congratulations to Xuegang Yang!
+- *2025.07*: &nbsp;🎉 A paper accepted by ACM CCS 2025.
+- *2025.02*: &nbsp;🎉 A paper accepted by IEEE TC.
 - *2025.01*: &nbsp;🏛️ Started postdoctoral fellowship at UCAS.
 - *2025.01*: &nbsp;🎓 Received Ph.D. degree from UCAS.
-- *2024.08*: &nbsp;🎉 One paper accepted by IEEE ICPADS 2024.
-- *2024.01*: &nbsp;🎉 One paper accepted by CHES 2024.
-- *2023.06*: &nbsp;🎉 One paper accepted by ACM ICPP 2023.
+- *2024.08*: &nbsp;🎉 A paper accepted by IEEE ICPADS 2024.
+- *2024.01*: &nbsp;🎉 A paper accepted by CHES 2024.
+- *2023.06*: &nbsp;🎉 A paper accepted by ACM ICPP 2023.
 </div>
 
 ## ✨ Highlights
