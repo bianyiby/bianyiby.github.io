@@ -44,7 +44,6 @@ The full list is available on <a href='https://scholar.google.com/citations?hl=z
 <div class="publications selected-publications">
 {% bibliography --query @*[selected=true] --group_by none %}
 </div>
-<p class="publication-legend"><sup>*</sup> Corresponding author.</p>
 
 
 
