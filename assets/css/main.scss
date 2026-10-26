@@ -487,6 +487,28 @@ html {
     font-size: .8em;
 }
 
+.publication-self {
+    color: #01369f;
+    background: #eef3fc;
+    padding: 0 2px;
+}
+[data-theme="dark"] .publication-self {
+    color: var(--text-color);
+    background: var(--code-bg);
+}
+.publication-corresponding {
+    margin-left: 0.1em;
+    font-size: 0.75em;
+    font-weight: 600;
+    top: -0.3em;
+}
+.publication-doi {
+    font-weight: normal;
+}
+.publication-legend {
+    font-size: 0.85em;
+}
+
 .selected-publications h2.bibliography {
     display: none;
 }

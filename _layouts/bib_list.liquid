@@ -1,33 +1,7 @@
 ---
 ---
-{%- assign authors = entry.author | split: " and " -%}
-{%- capture author_html -%}
-  {%- for a in authors -%}
-    {%- assign parts = a | split: ", " -%}
-    {%- if parts.size == 2 -%}
-      {%- assign full_name = parts[1] | append: " " | append: parts[0] -%}
-    {%- else -%}
-      {%- assign full_name = a -%}
-    {%- endif -%}
-    {%- if full_name == "Yi Bian" -%}
-      <u><strong>Yi Bian</strong></u>
-      {%- if entry.corresponding and entry.corresponding_author == "Bian, Yi" -%}<sup>*</sup>{%- endif -%}
-    {%- else -%}
-      {{ full_name }}
-    {%- endif -%}
-    {%- if forloop.last == false -%}
-      {%- if forloop.index == forloop.length | minus: 1 -%}, and {% else -%}, {% endif -%}
-    {%- endif -%}
-  {%- endfor -%}
-{%- endcapture -%}
-
-{%- capture venue -%}
-{%- if entry.journal -%}<em>{{ entry.journal }}</em>{%- else -%}<em>{{ entry.booktitle }}</em>{%- endif -%}
-{%- if entry.volume %}, vol. {{ entry.volume }}{%- endif -%}
-{%- if entry.number %}, no. {{ entry.number }}{%- endif -%}
-{%- if entry.pages %}, pp. {{ entry.pages }}{%- endif -%}
-{%- if entry.year %}, {{ entry.year }}{%- endif -%}
-{%- endcapture -%}
-
-<p>{% if entry.abbr %}<span class="badge">{{ entry.abbr }}</span> {% endif %}{% if entry.html %}<a href="{{ entry.html }}">{{ entry.title }}</a>{% else %}{{ entry.title }}{% endif %}<br>
-{{ author_html }}, {{ venue }}</p>
+{%- assign paper_url = entry.url | default: entry.html -%}
+{%- if paper_url == nil and entry.doi -%}{%- assign paper_url = 'https://doi.org/' | append: entry.doi -%}{%- endif -%}
+{%- capture author_html -%}{% include publication_authors.html entry=entry %}{%- endcapture -%}
+<p>{% if entry.abbr %}<span class="ccf-badge ccf-abbr">{{ entry.abbr }}</span> {% endif %}{% if paper_url %}<a href="{{ paper_url | escape }}">{{ entry.title }}</a>{% else %}{{ entry.title }}{% endif %}<br>
+{{ author_html | strip }}, {% include publication_venue.html entry=entry %}.</p>

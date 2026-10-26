@@ -1,0 +1,7 @@
+{%- assign paper = include.entry -%}
+{%- if paper.journal -%}<em>{{ paper.journal }}</em>{%- elsif paper.booktitle -%}<em>{{ paper.booktitle }}</em>{%- endif -%}
+{%- if paper.volume %}, vol. {{ paper.volume }}{%- endif -%}
+{%- if paper.number %}, no. {{ paper.number }}{%- endif -%}
+{%- if paper.pages %}, pp. {{ paper.pages | replace: '--', '&ndash;' }}{%- endif -%}
+{%- if paper.year %}, {{ paper.year }}{%- endif -%}
+{%- if paper.note %}, {{ paper.note }}{%- endif -%}

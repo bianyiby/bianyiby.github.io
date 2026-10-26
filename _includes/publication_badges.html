@@ -1,0 +1,4 @@
+{%- assign venue = site.data.venues[include.entry.abbr] -%}
+{%- if include.abbreviation and include.entry.abbr %} <span class="ccf-badge ccf-abbr">{{ include.entry.abbr | escape }}</span>{% endif -%}
+{%- if venue.ccf %} <span class="ccf-badge ccf-{{ venue.ccf | downcase }}">CCF-{{ venue.ccf }}</span>{% endif -%}
+{%- if venue.jcr %} <span class="ccf-badge jcr-{{ venue.jcr | downcase }}">{{ venue.jcr }}</span>{% endif -%}

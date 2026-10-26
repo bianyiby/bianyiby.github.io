@@ -1,0 +1,7 @@
+{%- assign authors = include.entry.bibtex | publication_authors: site.publication_author -%}
+<span class="publication-authors">
+{%- for author in authors -%}
+  <span class="publication-author">{%- if author.self -%}<u><strong class="publication-self">{{ author.name | escape }}</strong></u>{%- else -%}{{ author.name | escape }}{%- endif -%}{%- if author.corresponding -%}<sup class="publication-corresponding" title="Corresponding author" aria-label="Corresponding author">*</sup>{%- endif -%}</span>
+  {%- unless forloop.last -%}{% if forloop.rindex == 2 %} and {% else %}, {% endif %}{%- endunless -%}
+{%- endfor -%}
+</span>

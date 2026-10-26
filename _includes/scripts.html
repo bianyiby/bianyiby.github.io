@@ -43,12 +43,14 @@
 
           if (isAbstract && absData) {
             text = absData.textContent.trim();
-            content.innerHTML = '<div class="pub-abstract-body">' + text + '</div><button class="pub-copy-btn">Copy</button>';
+            content.innerHTML = '<div class="pub-abstract-body"></div><button class="pub-copy-btn">Copy</button>';
+            content.querySelector('.pub-abstract-body').textContent = text;
             content.className = 'pub-content pub-abstract';
             btn.classList.add('active');
           } else if (!isAbstract && bibData) {
             text = bibData.querySelector('pre') ? bibData.querySelector('pre').textContent : bibData.textContent;
-            content.innerHTML = '<pre>' + text + '</pre><button class="pub-copy-btn">Copy</button>';
+            content.innerHTML = '<pre></pre><button class="pub-copy-btn">Copy</button>';
+            content.querySelector('pre').textContent = text;
             content.className = 'pub-content pub-bibtex';
             btn.classList.add('active');
           } else {
@@ -89,7 +91,7 @@
     setTimeout(initPubButtons, 1000);
     setTimeout(initPubButtons, 3000);
 
-    // Inject abstracts into homepage highlight paper-boxes
+    // Toggle abstracts rendered from the same bibliography as the publication list.
     window.toggleHlAbstract = function(el) {
       var parent = el.parentElement;
       if (parent.classList.contains('collapsed')) {
@@ -102,37 +104,6 @@
         el.innerHTML = '&#9662; Expand';
       }
     };
-    (function() {
-      var boxes = document.querySelectorAll('.selected-publications .paper-box');
-      if (!boxes.length) return;
-      fetch('/publications/').then(function(r) { return r.text(); }).then(function(html) {
-        var doc = new DOMParser().parseFromString(html, 'text/html');
-        var absMap = {};
-        doc.querySelectorAll('.publications-list ol.bibliography li').forEach(function(li) {
-          var absData = li.querySelector('.pub-abstract-data');
-          if (!absData) return;
-          var p = li.querySelector('p[data-category]');
-          if (!p) return;
-          var fullText = p.textContent.trim();
-          var titleMatch = fullText.match(/\u201c(.+?)\u201d/);
-          if (titleMatch) absMap[titleMatch[1].replace(/[,.\s]+$/, '').trim()] = absData.textContent.trim();
-        });
-        boxes.forEach(function(box) {
-          var titleEl = box.querySelector('.paper-box-text p a');
-          if (!titleEl) return;
-          var abs = absMap[titleEl.textContent.trim()];
-          if (!abs) return;
-          var textDiv = box.querySelector('.paper-box-text');
-          if (!textDiv) return;
-          var absDiv = document.createElement('div');
-          absDiv.className = 'hl-abstract collapsed';
-          absDiv.innerHTML = '<div class="hl-abstract-text"><span class="hl-abstract-label">Abstract: </span></div><span class="hl-abstract-toggle" role="button" onclick="event.stopPropagation();toggleHlAbstract(this)">&#9662; Expand</span>';
-          absDiv.querySelector('.hl-abstract-label').insertAdjacentText('afterend', abs);
-          textDiv.appendChild(absDiv);
-        });
-      }).catch(function() {});
-    })();
-
     var backToTop = document.getElementById('back-to-top');
     if (backToTop) {
       var idleTimer = null;

@@ -104,8 +104,7 @@ def update_bib_file(filepath, skip_existing=True):
 
 if __name__ == '__main__':
     bib_files = [
-        '_bibliography/papers.bib',
-        '_bibliography/selected.bib'
+        '_bibliography/papers.bib'
     ]
 
     skip = '--force' not in sys.argv

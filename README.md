@@ -23,6 +23,49 @@ Some examples:
 - [Demo Page](https://rayeren.github.io/acad-homepage.github.io/)
 - [Personal Homepage of the author](https://rayeren.github.io/)
 
+## 本站论文维护
+
+只维护 `_bibliography/papers.bib`。首页从中筛选 `selected = {true}` 的论文，Publications 页面展示全部论文；不再维护 `selected.bib`。
+
+直接粘贴 DBLP / 出版社的 BibTeX 条目，然后在同一条目内添加网页字段即可。下面是格式示例，不是真实文献：
+
+```bibtex
+@article{example2026,
+  author = {Yi Bian and
+            Fangyu Zheng},
+  title = {{EXAMPLE}: Paper title},
+  journal = {Journal name},
+  year = {2026},
+  selected = {true},
+  abbr = {TC},
+  corresponding_author = {Fangyu Zheng},
+  preview = {assets/img/papers/example.svg}
+}
+```
+
+- `author` 使用 `Yi Bian and Fangyu Zheng` 格式，换行不影响解析。不要在姓名中添加星号、HTML 或 LaTeX 标记。
+- `_config.yml` 中的 `publication_author: "Yi Bian"` 只需配置一次，所有列表自动为该姓名加粗、加下划线。
+- `corresponding_author` 填真实通讯作者；多名写为 `{Yi Bian and Fangyu Zheng}`。省略即不标记，不根据作者顺序推断。若姓名不属于作者列表，构建会报出论文键和不匹配的姓名。
+- `selected = {true}` 显示在首页；省略或设为 `{false}` 则只显示在完整列表。
+- `preview` 可选，填写图片路径；没有图片则显示文字。图片存放在 `assets/img/papers/`。
+- `url` 是标准网页链接字段；只填写 `doi` 时，首页标题也会自动链接到 DOI。
+- `abbr`、`category` 是可选展示字段。已有缩写的 CCF/JCR 标签继续读取 `_data/venues.yml`；只有新增未配置的期刊/会议分类时才需维护该文件。
+- `abstract` 可选，首页和完整列表共用同一份摘要。
+- Bib 按钮默认显示，可用 `bibtex_show = {false}` 隐藏。复制出的 BibTeX 自动去掉 `selected`、`preview`、`corresponding_author` 等网页字段，保留大小写保护花括号、DOI、URL 和 DBLP 元数据。不要从 DBLP 示例复制已经损坏的标题转义。
+- 引用键可以保留 DBLP 的 `DBLP:journals/...` 格式，但每条必须唯一；年份分组读取 `year` 字段。
+
+当前通讯作者沿用迁移前的数据，需由作者依据论文正式署名核对。
+
+本地验证和预览：
+
+```bash
+docker compose run --rm website bundle exec ruby test/publications_test.rb
+docker compose run --rm website bundle exec jekyll build --trace
+docker compose up -d
+```
+
+访问 http://localhost:4002/ 和 http://localhost:4002/publications/ 。服务使用 `--no-watch`，修改后执行 `docker compose restart website` 重新生成页面。部署仍使用仓库已有的 GitHub Actions（自定义 `_plugins` 不适用于 GitHub Pages 的受限内置构建）。
+
 ## Key Features
 - **Automatically update google scholar citations**: using the google scholar crawler and github action, this REPO can update the author citations and publication citations automatically.
 - **Support Google analytics**: you can trace the traffics of your homepage by easy configuration.

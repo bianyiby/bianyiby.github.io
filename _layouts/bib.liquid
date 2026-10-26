@@ -1,52 +1,31 @@
 ---
 ---
-{%- assign authors = entry.author | split: " and " -%}
-{%- capture author_html -%}
-  {%- for a in authors -%}
-    {%- assign parts = a | split: ", " -%}
-    {%- if parts.size == 2 -%}
-      {%- assign full_name = parts[1] | append: " " | append: parts[0] -%}
-    {%- else -%}
-      {%- assign full_name = a -%}
-    {%- endif -%}
-    {%- if full_name == "Yi Bian" -%}
-      <u><strong style="color:#01369f;background:#eef3fc;padding:0 2px;">Yi Bian</strong></u>
-    {%- else -%}
-      {{ full_name }}
-    {%- endif -%}
-    {%- if forloop.last == false -%}
-      {%- if forloop.index == forloop.length | minus: 1 -%}, and {% else -%}, {% endif -%}
-    {%- endif -%}
-  {%- endfor -%}
-{%- endcapture -%}
-
-{%- capture venue -%}
-{%- if entry.journal -%}<em>{{ entry.journal }}</em>{%- else -%}<em>{{ entry.booktitle }}</em>{%- endif -%}
-{%- if entry.volume %}, vol. {{ entry.volume }}{%- endif -%}
-{%- if entry.number %}, no. {{ entry.number }}{%- endif -%}
-{%- if entry.pages %}, pp. {{ entry.pages }}{%- endif -%}
-{%- if entry.year %}, {{ entry.year }}{%- endif -%}
-{%- endcapture -%}
-
-{%- assign venue_data = site.data.venues[entry.abbr] -%}
-{%- capture ccf_badge -%}
-{%- if venue_data.ccf %}<span class="ccf-badge ccf-{{ venue_data.ccf | downcase }}">CCF-{{ venue_data.ccf }}</span>{%- endif -%}
-{%- endcapture -%}
+{%- assign paper_url = entry.url | default: entry.html -%}
+{%- if paper_url == nil and entry.doi -%}{%- assign paper_url = 'https://doi.org/' | append: entry.doi -%}{%- endif -%}
+{%- capture title -%}{% if paper_url %}<a href="{{ paper_url | escape }}" target="_blank" rel="noopener noreferrer">{{ entry.title }}</a>{% else %}{{ entry.title }}{% endif %}{%- endcapture -%}
+{%- capture author_html -%}{% include publication_authors.html entry=entry %}{%- endcapture -%}
+{%- capture citation -%}{{ author_html | strip }}, {% include publication_venue.html entry=entry %}. {% include publication_badges.html entry=entry %}{%- endcapture -%}
 
 {% if entry.preview %}
-<div class="paper-box">
+<div class="paper-box" data-key="{{ entry.key | escape }}">
   <div class="paper-box-image">
     <div>
       {% if entry.abbr %}<div class="badge">{{ entry.abbr }}</div>{% endif %}
-      <img src="{{ entry.preview | relative_url }}" alt="preview" width="100%" onclick="event.stopPropagation();document.getElementById('img-lightbox-img').src=this.src;document.getElementById('img-lightbox').classList.add('open')" style="cursor:zoom-in">
+      <img src="{{ entry.preview | relative_url }}" alt="{{ entry.title | strip_html | escape }}" width="100%" onclick="event.stopPropagation();document.getElementById('img-lightbox-img').src=this.src;document.getElementById('img-lightbox').classList.add('open')" style="cursor:zoom-in">
     </div>
   </div>
   <div class="paper-box-text">
-    <p>{% if entry.html %}<a href="{{ entry.html }}" target="_blank" rel="noopener noreferrer">{{ entry.title }}</a>{% else %}{{ entry.title }}{% endif %}</p>
-    <p>{{ author_html }}, {{ venue }} {{ ccf_badge }}</p>
+    <p>{{ title }}</p>
+    <p>{{ citation }}</p>
+    {% if entry.abstract %}
+    <div class="hl-abstract collapsed">
+      <div class="hl-abstract-text"><span class="hl-abstract-label">Abstract: </span>{{ entry.abstract }}</div>
+      <span class="hl-abstract-toggle" role="button" onclick="event.stopPropagation();toggleHlAbstract(this)">&#9662; Expand</span>
+    </div>
+    {% endif %}
   </div>
 </div>
 {% else %}
-<p>{% if entry.abbr %}<span class="badge">{{ entry.abbr }}</span> {% endif %}{% if entry.html %}<a href="{{ entry.html }}" target="_blank" rel="noopener noreferrer">{{ entry.title }}</a>{% else %}{{ entry.title }}{% endif %}<br>
-{{ author_html }}, {{ venue }} {{ ccf_badge }}</p>
+<p data-key="{{ entry.key | escape }}">{% if entry.abbr %}<span class="ccf-badge ccf-abbr">{{ entry.abbr }}</span> {% endif %}{{ title }}<br>
+{{ citation }}</p>
 {% endif %}

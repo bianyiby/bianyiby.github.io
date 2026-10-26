@@ -28,8 +28,8 @@ My research interests broadly lie broadly in cryptography and security, with a p
 
 ## 🔥 News
 <div class="news-list" markdown="1">
-- *2025.10*: &nbsp;🎉 A paper accepted by IEEE TIFS.
-- *2025.09*: &nbsp;🎉 A paper accepted by ICPADS 2026. Congratulations to Xuegang Yang!
+- *2026.10*: &nbsp;🎉 A paper accepted by IEEE TIFS.
+- *2026.09*: &nbsp;🎉 A paper accepted by ICPADS 2026. Congratulations to Xuegang Yang!
 - *2025.07*: &nbsp;🎉 A paper accepted by ACM CCS 2025.
 - *2025.02*: &nbsp;🎉 A paper accepted by IEEE TC.
 - *2025.01*: &nbsp;🏛️ Started postdoctoral fellowship at UCAS.
@@ -42,8 +42,9 @@ My research interests broadly lie broadly in cryptography and security, with a p
 ## ✨ Highlights
 The full list is available on <a href='https://scholar.google.com/citations?hl=zh-CN&user=GiwxKKcAAAAJ' target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Google%20Scholar-blue" alt="Google Scholar"></a> and [📚 Full Publications »](/publications/)
 <div class="publications selected-publications">
-{% bibliography --file selected --no_group_by %}
+{% bibliography --query @*[selected=true] --group_by none %}
 </div>
+<p class="publication-legend"><sup>*</sup> Corresponding author.</p>
 
 
 

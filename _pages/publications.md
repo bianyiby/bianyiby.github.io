@@ -8,6 +8,8 @@ author_profile: true
 
 # 📝 Full Publications
 
+<p class="publication-legend">* represents corresponding author</p>
+
 <div class="publications publications-list">
 {% bibliography --template bib_pub --group_by none %}
 </div>
@@ -16,27 +18,6 @@ author_profile: true
 
 <script>
   (function() {
-    var venueMap = {
-      {% for item in site.data.venues %}
-      '{{ item[0] }}': { ccf: '{{ item[1].ccf }}'{% if item[1].jcr %}, jcr: '{{ item[1].jcr }}'{% endif %} },
-      {% endfor %}
-    };
-
-    function makeBadge(cls, text) {
-      return '<span class="ccf-badge ' + cls + '">' + text + '</span>';
-    }
-
-    function classify(abbr) {
-      var info = venueMap[abbr];
-      if (!info) return '';
-      var badges = '';
-      if (info.ccf)  badges += makeBadge('ccf-' + info.ccf.toLowerCase(),  'CCF-' + info.ccf);
-      if (info.jcr)  badges += makeBadge('jcr-' + info.jcr.toLowerCase(),  info.jcr);
-      return badges;
-    }
-
-    var allItems = [];
-
     function processPublications() {
       var container = document.querySelector('.publications-list');
       if (!container) return;
@@ -48,39 +29,9 @@ author_profile: true
 
       items.forEach(function(li) {
         var p = li.querySelector('p[data-category]');
-        var span = li.querySelector('span[id]');
-        var category = p ? p.getAttribute('data-category') : 'Other';
-        li.setAttribute('data-category', category);
-
-        if (!span) return;
-        var abbrEl = li.querySelector('.badge');
-        var abbr = abbrEl ? abbrEl.textContent.trim() : '';
-        var abbrHtml = abbrEl ? '<span class="ccf-badge ccf-abbr">' + abbr + '</span>' : '';
-        if (abbrEl) {
-          abbrEl.remove();
-          if (p.firstChild && p.firstChild.nodeType === 3) p.removeChild(p.firstChild);
-        }
-
-        var html = span.innerHTML;
-        html = html.replace(/Yi Bian/g, '<u><strong style="color:#01369f;background:#eef3fc;padding:0 2px;">Yi Bian</strong></u>');
-        var badges = abbrHtml + '&nbsp;' + classify(abbr);
-        if (html.match(/doi:\s*((10\.[0-9]{4,}[^\s,)]+))/)) {
-          html = html.replace(/doi:\s*((10\.[0-9]{4,}[^\s,)]+))/g, function(match, doi) {
-            doi = doi.replace(/[.;]+$/, '');
-            return 'doi: <a href="https://doi.org/' + doi + '" target="_blank" rel="noopener noreferrer">' + doi + '</a>&nbsp;&nbsp;' + badges;
-          });
-        } else {
-          html += '&nbsp;&nbsp;' + badges;
-        }
-        span.innerHTML = html;
-
-        var id = span.id || '';
-        var m = id.match(/(\d{4})/);
-        var year = m ? m[1] : 'Others';
-        li.setAttribute('data-year', year);
+        li.setAttribute('data-category', p ? p.getAttribute('data-category') : 'Other');
+        li.setAttribute('data-year', p ? p.getAttribute('data-year') || 'Others' : 'Others');
       });
-
-      allItems = items;
 
       ol.remove();
       renderGroups(container, items);
